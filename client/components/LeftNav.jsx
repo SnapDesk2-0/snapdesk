@@ -8,7 +8,7 @@ const LeftNav = props => (
   >
     <div className="logo">
       {/* <img
-        src="logo2.png"
+        src="../../img/logo2.png"
         width="250px"
         height="60px"
         className="d-inline-block align-top mx-auto"

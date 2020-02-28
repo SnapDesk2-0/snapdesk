@@ -9,9 +9,6 @@ socket = io("http://localhost:3000", {
 
 import axios from "axios";
 
-
-
-
 class RightNav extends Component {
   constructor(props) {
     super(props);
@@ -25,15 +22,13 @@ class RightNav extends Component {
     // this.toggleChatBox = this.toggleChatBox.bind(this)
   }
 
-
   componentDidMount() {
     // GET PREVIOUS MESSAGES HERE
-    axios.get("/api/chat/getMessages")
-    .then(({ data }) => {
+    axios.get("/api/chat/getMessages").then(({ data }) => {
       // filter the data so the messages dont overlap
       this.setState(prevState => ({
         history: prevState.history.concat(data)
-      }))
+      }));
       // use date constructor to filter out the date
     });
 
@@ -44,18 +39,21 @@ class RightNav extends Component {
       }));
 
       // spot where frontend makes a post request to log chat in database
-      console.log('this is the state' + this.props.userId, this.props.userName, message.messages);
+      console.log(
+        "this is the state" + this.props.userId,
+        this.props.userName,
+        message.messages
+      );
       axios
-      .post("/api/chat/newMessage", {
-        userId: this.props.userId,
-        userName: this.props.userName,
-        message: message.messages
-      })
-      .then(({ data }) => {
-        console.log(data)
-      });
+        .post("/api/chat/newMessage", {
+          userId: this.props.userId,
+          userName: this.props.userName,
+          message: message.messages
+        })
+        .then(({ data }) => {
+          console.log(data);
+        });
     });
-
   }
 
   renderChat() {
@@ -111,6 +109,13 @@ class RightNav extends Component {
     return (
       <div className="rightNav">
         {/* <div className="rightBar"> */}
+        <img
+          src="../../img/logo2.png"
+          width="250px"
+          height="60px"
+          className="logo"
+          alt="Snap Desk Logo"
+        ></img>
         <div className="rightField">
           Active Tickets: {this.props.ticketsCount}
         </div>
